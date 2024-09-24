@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import { body, param, validationResult } from "express-validator";
-import { HttpCode } from "../core/constants";
+import { HttpCode } from "../../core/constants";
 
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 
@@ -62,7 +62,7 @@ export const validator = {
     ],
 
     validateUserID: [
-        // validation de l'id de l'utilisateur entrer
+        // validation de l'identifiant
         param('userID')
             .exists().withMessage('L\'ID de l\'utilisateur est requis !')
             .isMongoId().withMessage('Format de l\'ID invalide !')
@@ -83,4 +83,3 @@ export const validate = (req: Request, res: Response, next: NextFunction) => {
     }
     next();
 }
-  

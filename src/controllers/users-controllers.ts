@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import exceptions from "../errors/exceptions";
 import prisma from "../core/config/prisma";
-import { comparePassword, hashText } from "../functions/password-crypt";
-import sendMail from "../functions/sendmail";
 import { HttpCode } from "../core/constants";
-import userToken from "../functions/jwt";
 import { envs } from "../core/config/env";
-import { customRequest } from "../Interfaces/interfaces";
+import { customRequest } from "../core/Interfaces/interfaces";
+import { comparePassword, hashText } from "../functions/crypt-password";
+import sendMail from "../functions/mail/sendMail/send-mail";
+import exceptions from "../functions/errors/exceptions";
+import userToken from "../functions/jwt/jwt-functions";
 
 
 const usersControllers = {
@@ -34,9 +34,10 @@ const usersControllers = {
             if(!newUser) return exceptions.notFound(res, "Error when creating new user !");
             
             sendMail(
-                newUser.email, 
-                'Welcome to ******',
-                {
+                newUser.email, // Receiver Email
+                'Welcome to ******', // Subjet
+                'mail', // Template
+                { // Template Data
                     name: newUser.name, 
                     content: "Merci de vous etre Inscrit !"
                 }
@@ -115,11 +116,12 @@ const usersControllers = {
             )
 
             sendMail(
-                user.email, 
-                '******',
-                {
+                user.email, // Receiver Email
+                'Welcome to ******', // Subjet
+                'mail', // Template
+                { // Template Data
                     name: user.name, 
-                    content: "Vous venez de vous deconnectez ********; <br> Merci de Revenir bientot !"
+                    content: "Merci de vous etre Inscrit !"
                 }
             )
 

@@ -1,8 +1,8 @@
 import { NextFunction, Response } from "express";
 import { HttpCode } from "../core/constants";
-import { customRequest } from "../Interfaces/interfaces";
-import exceptions from "../errors/exceptions";
-import userToken from "../functions/jwt";
+import { customRequest } from "../core/Interfaces/interfaces";
+import userToken from "../functions/jwt/jwt-functions";
+import exceptions from "../functions/errors/exceptions";
 
 export const auth = {
     authToken: async(req: customRequest, res: Response, next: NextFunction) => {

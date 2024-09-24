@@ -8,12 +8,14 @@
     "rootDir": "./src",
     "moduleResolution": "Node",
     "typeRoots": ["./node_modules/@types"],
-    "sourceMap": true,
     "outDir": "dist/",
+    "sourceMap": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
     "strictNullChecks": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "strict": false,
+    "noImplicitAny": false,
+    "strictPropertyInitialization": false
   }
 }
