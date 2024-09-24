@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 import { readFileSync } from "fs";
-import { envs } from "../core/config/env";
-import { IUser } from "../Interfaces/interfaces";
+import { envs } from "../../core/config/env";
+import { IUser } from "../../core/Interfaces/interfaces";
 
 // Download all The keys at the beginin of our program
 const privateKey = readFileSync(envs.JWT_PRIVATE_KEY as string, "utf-8");

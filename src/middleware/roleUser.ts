@@ -1,7 +1,7 @@
-import { customRequest } from "./authUser";
 import { NextFunction, Response } from "express";
-import exceptions from "../errors/exceptions";
 import prisma from "../core/config/prisma";
+import exceptions from "../functions/errors/exceptions";
+import { customRequest } from "../core/Interfaces/interfaces";
 
 const roleAdmin = async (
         req: customRequest, 
@@ -18,7 +18,7 @@ const roleAdmin = async (
         const user = await prisma.user.findUnique({where: {user_id: userID}})
         if(!user) return exceptions.badRequest(res, "user not found !");
     
-        if(user.state !== "admin") return exceptions.forbiden(res, "You are not allow to do this action !");
+        if(user.role !== "admin") return exceptions.forbiden(res, "You are not allow to do this action !");
         
         next()
     } catch (error) {

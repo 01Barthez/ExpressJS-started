@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { HttpCode } from "../core/constants";
+import { HttpCode } from "../../core/constants";
 
 const exceptions = {
     badRequest: (res: Response, msg: string) => {
