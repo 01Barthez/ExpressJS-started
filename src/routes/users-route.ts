@@ -1,12 +1,14 @@
 import { Router } from "express";
-import usersControllers from "../controllers/users-controller";
 import { validate, validator } from "../functions/validator";
+import { userRoute } from "../utils/mock-routes";
 import { auth } from "../middleware/authUser";
+import usersControllers from "../controllers/users-controllers";
+
 const user = Router();
 
 // Inscription of new user
 user.post(
-    '/signup', 
+    userRoute.INSCRIPTION, 
     validator.validateUser, 
     validate, 
     usersControllers.inscription
@@ -14,7 +16,7 @@ user.post(
 
 // Connexion of user
 user.post(
-    '/login', 
+    userRoute.CONNEXION, 
     validator.validateUserAtLogin, 
     validate, 
     usersControllers.connexion
@@ -22,21 +24,21 @@ user.post(
 
 // Deconnexion of user
 user.post(
-    '/logout', 
+    userRoute.DECONNEXION, 
     auth.authToken,
     usersControllers.deconnexion
 );
 
 // consultation of user
 user.get(
-    '/profile', 
+    userRoute.GET_USER, 
     auth.authToken,
     usersControllers.consultuser
 );
 
 // update user
 user.put(
-    '/profile', 
+    userRoute.UPDATE_USER, 
     auth.authToken,
     validator.validateUser,
     validate, 
@@ -45,13 +47,13 @@ user.put(
 
 // Delete user
 user.delete(
-    '/profile', 
+    userRoute.DELETE_USER, 
     auth.authToken,
     usersControllers.deleteUser
 );
 
 user.post(
-    '/refresh/:userID',
+    userRoute.REFRESH_TOKEN,
     validator.validateUserID,
     validate,
     usersControllers.refreshAccessToken

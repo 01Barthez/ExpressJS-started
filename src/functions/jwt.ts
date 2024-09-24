@@ -1,8 +1,7 @@
 import jwt from "jsonwebtoken"
 import { readFileSync } from "fs";
 import { envs } from "../core/config/env";
-import { IUser } from '../middleware/authUser';
-
+import { IUser } from "../Interfaces/interfaces";
 
 // Download all The keys at the beginin of our program
 const privateKey = readFileSync(envs.JWT_PRIVATE_KEY as string, "utf-8");
@@ -28,6 +27,16 @@ const userToken = {
         }
     },
 
+    decodeAccessToken: (token: string) => {
+        try {
+            return jwt.decode(token) as IUser;
+        } catch (error) {
+            console.error(`Invalide access token: ${error}`)
+            throw error;
+        }
+    },
+
+
     // REFRESH TOKEN ET SES FONCTIONS
     refreshToken: (payload: IUser) => {
         const signOption = {
@@ -41,6 +50,15 @@ const userToken = {
     verifyRefreshToken: (refreshToken: string) => {
         try {
             return jwt.verify(refreshToken, RefreshpublicKey) as IUser;
+        } catch (error) {
+            console.error(`token invalide: ${error}`);
+            throw error;
+        }
+    },
+
+    decodeRefreshToken: (refreshToken: string) => {
+        try {
+            return jwt.decode(refreshToken) as IUser;
         } catch (error) {
             console.error(`token invalide: ${error}`);
             throw error;
