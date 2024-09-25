@@ -1,59 +1,59 @@
 import { Router } from "express";
-import { userRoute } from "../utils/mocks/mock-routes";
 import { auth } from "../middleware/authUser";
 import usersControllers from "../controllers/users-controllers";
-import { validate, validator } from "../utils/validator/validator";
+import { validate, validator } from "../services/validator/validator";
+import ROUTES from "../utils/mocks/mocks-routes";
 
-const user = Router();
+const user: Router = Router();
 
-// Inscription of new user
+//? Inscription of new user
 user.post(
-    userRoute.INSCRIPTION, 
+    ROUTES.USER.INSCRIPTION, 
     validator.validateUser, 
     validate, 
     usersControllers.inscription
 );
 
-// Connexion of user
+//? Connexion of user
 user.post(
-    userRoute.CONNEXION, 
+    ROUTES.USER.CONNEXION, 
     validator.validateUserAtLogin, 
     validate, 
     usersControllers.connexion
 );
 
-// Deconnexion of user
+//? Deconnexion of user
 user.post(
-    userRoute.DECONNEXION, 
+    ROUTES.USER.DECONNEXION, 
     auth.authToken,
     usersControllers.deconnexion
 );
 
-// consultation of user
+//? consultation of user
 user.get(
-    userRoute.GET_USER, 
+    ROUTES.USER.GET_USER, 
     auth.authToken,
     usersControllers.consultuser
 );
 
-// update user
+//? update user
 user.put(
-    userRoute.UPDATE_USER, 
+    ROUTES.USER.UPDATE_USER, 
     auth.authToken,
     validator.validateUser,
     validate, 
     usersControllers.updateUserData
 );
 
-// Delete user
+//? Delete user
 user.delete(
-    userRoute.DELETE_USER, 
+    ROUTES.USER.DELETE_USER, 
     auth.authToken,
     usersControllers.deleteUser
 );
 
 user.post(
-    userRoute.REFRESH_TOKEN,
+    ROUTES.USER.REFRESH_TOKEN,
     validator.validateUserID,
     validate,
     usersControllers.refreshAccessToken

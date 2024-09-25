@@ -5,7 +5,7 @@ import { customRequest } from "../core/Interfaces/interfaces";
 import { comparePassword, hashText } from "../functions/crypt-password";
 import sendMail from "../services/mail/sendMail/send-mail";
 import exceptions from "../utils/errors/exceptions";
-import userToken from "../functions/jwt/jwt-functions";
+import userToken from "../services/jwt/jwt-functions";
 import prisma from "../core/config/prismaClient";
 
 

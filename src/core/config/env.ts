@@ -40,6 +40,13 @@ export const envs = {
 	MAIL_PASSWORD: get('MAIL_PASSWORD').default("password").asString(),
 	MAIL_PORT: get('MAIL_PORT').required().asPortNumber(),
 	MAIL_SECURITY: get('MAIL_SECURITY').default("false").asBool(),
+
+	// # Configuration of S3 KEYS
+	AWS_ACCESS_KEY_ID: get('AWS_ACCESS_KEY_ID').default("your_access_key").asString(),
+	AWS_SECRET_ACCESS_KEY: get('AWS_SECRET_ACCESS_KEY').default("your_secret_key").asString(),
+	AWS_REGION: get('AWS_REGION').default("your_region").asString(),
+	AWS_BUCKET_NAME: get('AWS_BUCKET_NAME').default("your_bucket_name").asString(),
+	MIMIO_URL: get('MIMIO_URL').default("http://localhost:9000/").asUrlString(),
 };
 
 export const CONNECTION_STRING = `mongodb://${envs.MONGO_INITDB_ROOT_USERNAME}:${envs.MONGO_INITDB_ROOT_PASSWORD}@172.28.0.2:27017/${envs.MONGO_DB_NAME}?authSource=admin`;
