@@ -1,7 +1,7 @@
 import { NextFunction, Response } from "express";
-import prisma from "../core/config/prisma";
-import exceptions from "../functions/errors/exceptions";
+import exceptions from "../utils/errors/exceptions";
 import { customRequest } from "../core/Interfaces/interfaces";
+import prisma from "../core/config/prismaClient";
 
 const roleAdmin = async (
         req: customRequest, 

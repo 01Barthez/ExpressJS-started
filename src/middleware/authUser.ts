@@ -2,7 +2,7 @@ import { NextFunction, Response } from "express";
 import { HttpCode } from "../core/constants";
 import { customRequest } from "../core/Interfaces/interfaces";
 import userToken from "../functions/jwt/jwt-functions";
-import exceptions from "../functions/errors/exceptions";
+import exceptions from "../utils/errors/exceptions";
 
 export const auth = {
     authToken: async(req: customRequest, res: Response, next: NextFunction) => {

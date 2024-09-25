@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { userRoute } from "../utils/mock-routes";
+import { userRoute } from "../utils/mocks/mock-routes";
 import { auth } from "../middleware/authUser";
 import usersControllers from "../controllers/users-controllers";
-import { validate, validator } from "../functions/validator/validator";
+import { validate, validator } from "../utils/validator/validator";
 
 const user = Router();
 
