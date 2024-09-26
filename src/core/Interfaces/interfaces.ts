@@ -7,6 +7,13 @@ export interface IUser {
     password: string; 
 }
 
+export interface IItem {
+    items_id: string,
+    title: string,
+    content: string,
+    number:  number,
+}
+
 export interface customRequest extends Request{
     user?: IUser;
 }

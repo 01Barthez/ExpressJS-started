@@ -14,11 +14,18 @@ datasource db {
 }
 
 model user {
-  user_id  String @id @default(auto()) @map("_id") @db.ObjectId
+  user_id  String   @id @default(auto()) @map("_id") @db.ObjectId
   name     String
-  email    String @unique
+  email    String   @unique
   password String
-  role RoleUser @default(user)
+  role     RoleUser @default(user)
+}
+
+model item {
+  items_id String @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  content  String
+  number   Int
 }
 
 enum RoleUser {
